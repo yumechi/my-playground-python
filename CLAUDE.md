@@ -16,10 +16,10 @@ Pythonフレームワーク周りと動作検証のための学習リポジト�
 - `behave_practice/` - BDD テストフレームワーク Behave の練習
 - `start_qrcode/` - QRコード生成の練習
 - `start_streamlit/` - Streamlit アプリケーションの練習
-- `study/new_feature/` - Python新機能の学習
-- `study/try_fastapi/` - FastAPI フレームワークの学習
-- `study/try_plyer/` - Plyer ライブラリの学習
-- `study/try_ray/` - Ray 分散処理フレームワークの学習
+- `playground/new_feature/` - Python新機能の学習
+- `playground/try_fastapi/` - FastAPI フレームワークの学習
+- `playground/try_plyer/` - Plyer ライブラリの学習
+- `playground/try_ray/` - Ray 分散処理フレームワークの学習
 - `disposable/` - 使い捨てスクリプト置き場
 
 ## 開発フロー
