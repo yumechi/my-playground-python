@@ -1,0 +1,71 @@
+[project]
+name = "playground-textual"
+version = "0.1.0"
+description = "Textual TUI フレームワークの学習プロジェクト"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "textual>=6.6.0",
+]
+
+[dependency-groups]
+dev = [
+    "mypy>=1.18.2",
+    "pytest>=9.0.0",
+    "ruff>=0.14.4",
+    "textual-dev>=1.8.0",
+]
+
+[tool.ruff]
+# 2025年のベストプラクティス: 行の長さは88または100
+line-length = 100
+target-version = "py313"
+
+[tool.ruff.lint]
+# 有効にするルール
+select = [
+    "E",   # pycodestyle errors
+    "F",   # pyflakes
+    "I",   # isort
+    "N",   # pep8-naming
+    "UP",  # pyupgrade
+    "B",   # flake8-bugbear
+    "C4",  # flake8-comprehensions
+    "SIM", # flake8-simplify
+    "PTH", # flake8-use-pathlib
+]
+
+# 無視するルール（必要に応じて調整）
+ignore = [
+    "E501",  # 行の長さは ruff format が対応
+]
+
+[tool.ruff.format]
+# black 互換のフォーマット
+quote-style = "double"
+indent-style = "space"
+
+[tool.mypy]
+# 型チェックの厳格さ（学習用なので段階的に厳格化可能）
+python_version = "3.13"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+check_untyped_defs = true
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_no_return = true
+
+# サードパーティライブラリの型スタブがない場合は警告しない
+[[tool.mypy.overrides]]
+module = "textual.*"
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = "test_*.py"
+python_classes = "Test*"
+python_functions = "test_*"
+addopts = "-v --tb=short"
