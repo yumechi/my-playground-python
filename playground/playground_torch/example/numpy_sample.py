@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
-import numpy as np
 import math
+
+import numpy as np
 
 # Create random input and output data
 x = np.linspace(start=-math.pi, stop=math.pi, num=3000)
@@ -17,7 +18,7 @@ learning_rate = 1e-6
 for t in range(3000):
     # Forward pass: compute predicted y
     # y = a + b x + c x^2 + d x^3
-    y_pred = a + b * x + c * x ** 2 + d * x ** 3
+    y_pred = a + b * x + c * x**2 + d * x**3
 
     # Compute and print loss
     loss = np.square(y_pred - y).sum()
@@ -28,8 +29,8 @@ for t in range(3000):
     grad_y_pred = 2.0 * (y_pred - y)
     grad_a = grad_y_pred.sum()
     grad_b = (grad_y_pred * x).sum()
-    grad_c = (grad_y_pred * x ** 2).sum()
-    grad_d = (grad_y_pred * x ** 3).sum()
+    grad_c = (grad_y_pred * x**2).sum()
+    grad_d = (grad_y_pred * x**3).sum()
 
     # Update weights
     a -= learning_rate * grad_a
@@ -37,4 +38,4 @@ for t in range(3000):
     c -= learning_rate * grad_c
     d -= learning_rate * grad_d
 
-print(f'Result: y = {a} + {b} x + {c} x^2 + {d} x^3')
+print(f"Result: y = {a} + {b} x + {c} x^2 + {d} x^3")

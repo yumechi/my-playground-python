@@ -3,18 +3,18 @@
 複数のタスクが並行して進行する様子をターミナル上で表示する。
 """
 
-import time
 import random
+import time
 
 from rich.console import Console
 from rich.progress import (
-    Progress,
     BarColumn,
+    Progress,
     SpinnerColumn,
+    TaskProgressColumn,
     TextColumn,
     TimeElapsedColumn,
     TimeRemainingColumn,
-    TaskProgressColumn,
 )
 
 console = Console()

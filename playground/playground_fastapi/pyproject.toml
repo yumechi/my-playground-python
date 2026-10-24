@@ -11,8 +11,8 @@ readme = "README.md"
 requires-python = ">=3.14"
 dependencies = [
   "fastapi",
-  "uvicorn['standard']",
-  "pydantic['email']",
+  "uvicorn[standard]",
+  "pydantic[email]",
   "python-multipart",
 ]
 
@@ -23,3 +23,7 @@ dev-dependencies = [
 
 [scripts]
 start = "uvicorn main:app --reload"
+
+[tool.ruff.lint.flake8-bugbear]
+# FastAPI の依存宣言（引数デフォルトでの呼び出し）は B008 の対象外にする
+extend-immutable-calls = ["fastapi.Body", "fastapi.File", "fastapi.Header", "fastapi.Query"]

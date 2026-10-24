@@ -1,5 +1,4 @@
 from enum import Enum
-from typing import Optional
 
 from fastapi import FastAPI
 
@@ -32,12 +31,12 @@ async def read_user_me():
 
 
 @app.get("/users/{user_id}")
-async def read_user_me(user_id: str):
+async def read_user(user_id: str):
     return {"user_id": user_id}
 
 
 @app.get("/items/")
-async def read_item(skip: int = 0, limit: int = 10):
+async def read_items(skip: int = 0, limit: int = 10):
     return fake_items_db[skip : skip + limit]
 
 
@@ -45,16 +44,12 @@ async def read_item(skip: int = 0, limit: int = 10):
 # Trueになる 1, True, true, on, yes（大文字小文字問わない）
 # Noになる 0, False, false, off, no（実際は True にならないすべての any なパターン）
 @app.get("/items/{item_id}")
-async def read_item(
-    item_id: int, q: Optional[str] = None, short: bool = False
-):
+async def read_item(item_id: int, q: str | None = None, short: bool = False):
     items = {"item_id": item_id}
     if q:
         items |= {"q": q}
     if not short:
-        items |= {
-            "description": "This is an amazing item that has a long description"
-        }
+        items |= {"description": "This is an amazing item that has a long description"}
     return items
 
 
@@ -66,15 +61,13 @@ async def read_user_item_needy(item_id: str, needy: str):
 
 @app.get("/users/{user_id}/items/{item_id}")
 async def read_user_item(
-    user_id: int, item_id: str, q: Optional[str] = None, short: bool = False
+    user_id: int, item_id: str, q: str | None = None, short: bool = False
 ):
     items = {"item_id": item_id, "owner_id": user_id}
     if q:
         items |= {"q": q}
     if not short:
-        items |= {
-            "description": "This is an amazing item that has a long description"
-        }
+        items |= {"description": "This is an amazing item that has a long description"}
     return items
 
 

@@ -78,6 +78,7 @@ uv run pytest
 from textual.app import App, ComposeResult
 from textual.widgets import Header, Footer, Button
 
+
 class MyApp(App):
     """シンプルな Textual アプリケーション"""
 
@@ -88,6 +89,7 @@ class MyApp(App):
 
     def on_button_pressed(self, event: Button.Pressed) -> None:
         self.exit()
+
 
 if __name__ == "__main__":
     app = MyApp()

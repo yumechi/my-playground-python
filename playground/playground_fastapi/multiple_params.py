@@ -1,6 +1,4 @@
-from typing import Optional
-
-from fastapi import FastAPI, Body
+from fastapi import Body, FastAPI
 from pydantic import BaseModel
 
 app = FastAPI()
@@ -8,14 +6,14 @@ app = FastAPI()
 
 class Item(BaseModel):
     name: str
-    description: Optional[str] = None
+    description: str | None = None
     price: float
-    tax: Optional[float] = None
+    tax: float | None = None
 
 
 class User(BaseModel):
     username: str
-    full_name: Optional[str] = None
+    full_name: str | None = None
 
 
 @app.put("/items/{item_id}")
@@ -51,7 +49,7 @@ async def update_item_2(
     user: User,
     importtance: int = Body(..., gt=0),
     # 意図的に Body と書いてない場合は Query として解釈される
-    q: Optional[str] = None,
+    q: str | None = None,
 ):
     """
     Modelとは別にBodyとして受け取る値を定義するケース。
@@ -68,11 +66,7 @@ async def update_item_2(
 
 
 @app.put("/items_3/{item_id}")
-async def update_item_3(
-    *,
-    item_id: int,
-    item: Item = Body(..., embed=True)
-):
+async def update_item_3(*, item_id: int, item: Item = Body(..., embed=True)):
     """
     FastAPIはデフォルトでは body をダイレクトに見るが、このケースでは `"item"` をキーとして、
     その中に body を書く形式にできる。（Multi bodyのケースでやったような形式で書ける）

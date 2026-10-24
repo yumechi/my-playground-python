@@ -1,5 +1,3 @@
-from typing import Optional
-
 from fastapi import FastAPI
 from pydantic import BaseModel, HttpUrl
 
@@ -14,17 +12,17 @@ class Image(BaseModel):
 
 class Item(BaseModel):
     name: str
-    description: Optional[str] = None
+    description: str | None = None
     price: float
-    tax: Optional[float] = None
+    tax: float | None = None
     # tags: list[str] = []
-    tags: set[str] = str()
-    image: Optional[list[Image]] = None
+    tags: set[str] = ""
+    image: list[Image] | None = None
 
 
 class Offer(BaseModel):
     name: str
-    description: Optional[str] = None
+    description: str | None = None
     price: float
     items: list[Item]
 

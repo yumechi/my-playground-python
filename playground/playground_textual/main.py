@@ -45,12 +45,11 @@ class CounterApp(App):
     def compose(self) -> ComposeResult:
         """UI コンポーネントを構成"""
         yield Header()
-        with Container():
-            with Vertical():
-                yield Static(f"カウント: {self.count}", id="counter")
-                yield Button("カウントアップ ⬆", id="increment", variant="success")
-                yield Button("リセット 🔄", id="reset", variant="warning")
-                yield Button("終了 ❌", id="quit", variant="error")
+        with Container(), Vertical():
+            yield Static(f"カウント: {self.count}", id="counter")
+            yield Button("カウントアップ ⬆", id="increment", variant="success")
+            yield Button("リセット 🔄", id="reset", variant="warning")
+            yield Button("終了 ❌", id="quit", variant="error")
         yield Footer()
 
     def on_button_pressed(self, event: Button.Pressed) -> None:

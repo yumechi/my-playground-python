@@ -1,8 +1,10 @@
-import ray
 import os
 import random
 
+import ray
+
 ray.init(num_cpus=4, num_gpus=1)
+
 
 @ray.remote(num_cpus=0.10, num_gpus=0.001)
 class Counter(object):
@@ -15,8 +17,13 @@ class Counter(object):
 
     def read(self):
         print("ray.get_gpu_ids(): {}".format(ray.get_gpu_ids()))
-        print("CUDA_VISIBLE_DEVICES: {}".format(os.environ["CUDA_VISIBLE_DEVICES"]))
+        print(
+            "CUDA_VISIBLE_DEVICES: {}".format(
+                os.environ["CUDA_VISIBLE_DEVICES"]
+            )
+        )
         return self.n
+
 
 # 桁を大きくしたら大量にワーカーができてエラーが多発したので、これくらいまでで
 for j in range(4, 100):
@@ -24,4 +31,3 @@ for j in range(4, 100):
     [c.increment.remote() for c in counters]
     futures = [c.read.remote() for c in counters]
     print(ray.get(futures))
-

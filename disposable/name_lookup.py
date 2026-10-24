@@ -7,7 +7,7 @@ def get_settings() -> argparse.Namespace:
 
     :return: argparse.Namespace
     """
-    parser = argparse.ArgumentParser(description='対象ファイル')
+    parser = argparse.ArgumentParser(description="対象ファイル")
     parser.add_argument("-f", "--file", required=True)
 
     return parser.parse_args()
@@ -42,5 +42,5 @@ def run(args: argparse.Namespace) -> None:
     print("\n".join(names))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     run(get_settings())

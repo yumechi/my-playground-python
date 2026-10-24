@@ -1,4 +1,4 @@
-from behave import given, when, then, step
+from behave import given, step, then, when
 
 
 @given("a sample text loaded into the frobulator")
@@ -24,10 +24,12 @@ def specific_users(context):
         assert row["name"] is not None
         assert row["department"] is not None
         assert row.get("floor") is None
-        response.append({
-            "name": row["name"],
-            "department": row["department"],
-        })
+        response.append(
+            {
+                "name": row["name"],
+                "department": row["department"],
+            }
+        )
     context.response = response
 
 
@@ -38,11 +40,11 @@ def count_people(context):
 
 @then('we will find two people in "Silly Walks"')
 def find_silly_walks(context):
-    assert len([1 for row in context.response
-                if row["department"] == "Silly Walks"]) == 2
+    assert (
+        len([1 for row in context.response if row["department"] == "Silly Walks"]) == 2
+    )
 
 
 @step('we will find one person in "Beer Cans"')
 def not_find_beer_cans(context):
-    assert len([1 for row in context.response
-                if row["department"] == "Beer Cans"]) == 1
+    assert len([1 for row in context.response if row["department"] == "Beer Cans"]) == 1
