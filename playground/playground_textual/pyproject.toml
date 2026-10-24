@@ -3,7 +3,7 @@ name = "playground-textual"
 version = "0.1.0"
 description = "Textual TUI フレームワークの学習プロジェクト"
 readme = "README.md"
-requires-python = ">=3.13"
+requires-python = ">=3.14"
 dependencies = [
     "textual>=6.6.0",
 ]
@@ -19,7 +19,7 @@ dev = [
 [tool.ruff]
 # 2025年のベストプラクティス: 行の長さは88または100
 line-length = 100
-target-version = "py313"
+target-version = "py314"
 
 [tool.ruff.lint]
 # 有効にするルール
@@ -47,7 +47,7 @@ indent-style = "space"
 
 [tool.mypy]
 # 型チェックの厳格さ（学習用なので段階的に厳格化可能）
-python_version = "3.13"
+python_version = "3.14"
 warn_return_any = true
 warn_unused_configs = true
 disallow_untyped_defs = true

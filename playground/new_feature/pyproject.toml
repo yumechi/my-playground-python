@@ -3,7 +3,7 @@ name = "new-feature-practice"
 version = "0.1.0"
 description = "Python new feature practice"
 readme = "README.md"
-requires-python = ">=3.12"
+requires-python = ">=3.14"
 dependencies = []
 
 [project.optional-dependencies]
@@ -23,7 +23,7 @@ packages = ["src"]
 
 [tool.ruff]
 line-length = 79
-target-version = "py312"
+target-version = "py314"
 
 [tool.ruff.lint]
 select = ["E", "F", "W", "B", "I"]
