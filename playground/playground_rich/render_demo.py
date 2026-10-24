@@ -2,8 +2,8 @@
 
 from rich.console import Console
 from rich.markdown import Markdown
-from rich.syntax import Syntax
 from rich.panel import Panel
+from rich.syntax import Syntax
 
 console = Console()
 
@@ -77,7 +77,7 @@ if __name__ == "__main__":
     main()
 '''
 
-SAMPLE_JS = '''\
+SAMPLE_JS = """\
 import express from "express";
 
 const app = express();
@@ -101,9 +101,9 @@ app.get("/api/tasks", async (req, res) => {
 app.listen(3000, () => {
   console.log("Server running on http://localhost:3000");
 });
-'''
+"""
 
-SAMPLE_GO = '''\
+SAMPLE_GO = """\
 package main
 
 import (
@@ -140,7 +140,7 @@ func main() {
 \twg.Wait()
 \tfmt.Println("全タスク完了")
 }
-'''
+"""
 
 samples = [
     ("Python", SAMPLE_CODE, "python"),

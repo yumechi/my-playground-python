@@ -1,6 +1,4 @@
-from typing import Optional
-
-from fastapi import FastAPI, Body
+from fastapi import Body, FastAPI
 from pydantic import BaseModel, Field
 
 app = FastAPI()
@@ -8,13 +6,13 @@ app = FastAPI()
 
 class Item(BaseModel):
     name: str
-    description: Optional[str] = None
+    description: str | None = None
     price: float
-    tax: Optional[float] = None
+    tax: float | None = None
 
     # Config を定義するパターン
     class Config:
-        schema_extra = {
+        schema_extra = {  # noqa: RUF012 (pydantic の Config クラスの書き方を示すサンプル)
             "example": {
                 "name": "Config sample",
                 "description": "A very nice Item by Config Class",
@@ -27,11 +25,9 @@ class Item(BaseModel):
 class Item2(BaseModel):
     # Field で書いていくパターン
     name: str = Field(..., example="Field sample")
-    description: Optional[str] = Field(
-        None, example="A very nice Item by Field Class"
-    )
+    description: str | None = Field(None, example="A very nice Item by Field Class")
     price: float = Field(..., example=35.4)
-    tax: Optional[float] = Field(None, example=3.2)
+    tax: float | None = Field(None, example=3.2)
 
 
 @app.put("/items/{item_id}")

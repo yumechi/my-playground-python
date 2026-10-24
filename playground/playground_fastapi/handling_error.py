@@ -1,7 +1,6 @@
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.exceptions import RequestValidationError
-from fastapi.responses import PlainTextResponse
-from fastapi.responses import JSONResponse
+from fastapi.responses import JSONResponse, PlainTextResponse
 
 app = FastAPI()
 
@@ -25,12 +24,10 @@ async def read_item(item_id: str):
 
 
 @app.get("/items_2/{item_id}")
-async def read_item(item_id: int):
-    if item_id == '7':
+async def read_item_2(item_id: int):
+    if item_id == "7":
         raise HTTPException(status_code=418, detail="Nope! I don't like 3.")
     return {"items": item_id}
-
-
 
 
 class RetiredException(Exception):
@@ -42,9 +39,7 @@ class RetiredException(Exception):
 async def unicorn_exception_handler(request: Request, exc: RetiredException):
     return JSONResponse(
         status_code=418,
-        content={
-            "message": f"{exc.name} の名前は禁止されている…"
-        },
+        content={"message": f"{exc.name} の名前は禁止されている…"},
     )
 
 

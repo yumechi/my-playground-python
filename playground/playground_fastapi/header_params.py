@@ -1,14 +1,12 @@
-from typing import Optional
-
-from fastapi import Header, FastAPI
+from fastapi import FastAPI, Header
 
 app = FastAPI()
 
 
 @app.get("/items/")
 async def read_items(
-    user_agent: Optional[str] = Header(None),
-    himitsu_word: Optional[str] = Header(None, convert_underscores=False),
+    user_agent: str | None = Header(None),
+    himitsu_word: str | None = Header(None, convert_underscores=False),
 ):
     """
     Headerの場合はデフォルトでハイフンからアンダースコアへの変数変換がされる。大文字小文字の違いも意識不要。
@@ -24,7 +22,7 @@ async def read_items(
 
 
 @app.get("/items_2/")
-async def read_items_2(x_token: Optional[list[str]] = Header(None)):
+async def read_items_2(x_token: list[str] | None = Header(None)):
     """
     リストのサンプル。
 

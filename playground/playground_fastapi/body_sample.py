@@ -1,14 +1,12 @@
-from typing import Optional
-
 from fastapi import FastAPI
 from pydantic import BaseModel
 
 
 class Item(BaseModel):
     name: str
-    description: Optional[str] = None
+    description: str | None = None
     price: float
-    tax: Optional[float] = None
+    tax: float | None = None
 
 
 app = FastAPI()
@@ -28,7 +26,7 @@ async def create_item(item: Item):
 # パラメーターが単数型(int, float, str, bool)の場合は、クエリパラメータとして判断
 # パラメータが Pydantic モデルの型である場合、リクエストボディ
 @app.put("/items/{item_id}")
-async def update_item(item_id: int, item: Item, q: Optional[str] = None):
+async def update_item(item_id: int, item: Item, q: str | None = None):
     result = {"item_id": item_id, **item.dict()}
     if q:
         result |= {"q": q}

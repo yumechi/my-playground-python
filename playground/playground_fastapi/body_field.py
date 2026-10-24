@@ -1,5 +1,3 @@
-from typing import Optional
-
 from fastapi import Body, FastAPI
 from pydantic import BaseModel, Field
 
@@ -10,11 +8,9 @@ class Item(BaseModel):
     name: str
     # これまでやってきた Query, Path, Body のようなバリデーション用の機能や、説明を入れる機能を有した Field がある
     # JSON Ｓchema に活用される
-    description: Optional[str] = Field(
-        None, title="商品の説明", max_length=300
-    )
+    description: str | None = Field(None, title="商品の説明", max_length=300)
     price: float = Field(..., gt=0, description="価格は0円より大きくしてください")
-    tax: Optional[float] = None
+    tax: float | None = None
 
 
 @app.put("/items/{item_id}")

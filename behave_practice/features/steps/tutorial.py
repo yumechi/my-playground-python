@@ -1,4 +1,4 @@
-from behave import given, when, then, step
+from behave import given, step, then, when
 
 
 @given("we have behave installed")
@@ -8,7 +8,7 @@ def installed(context):
 
 @when("we implement a test")
 def a_test(context):
-    assert True is not False
+    assert True is not False  # noqa: PLR0133 (behave チュートリアルのまま)
 
 
 @then("behave will test it for us!")

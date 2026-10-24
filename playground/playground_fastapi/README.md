@@ -7,4 +7,3 @@
 ## 参考にしているページ
 
 https://fastapi.tiangolo.com/
-

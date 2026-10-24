@@ -3,8 +3,7 @@ from typing import Protocol, runtime_checkable
 
 @runtime_checkable
 class Idol(Protocol):
-    def gobi(self) -> str:
-        ...
+    def gobi(self) -> str: ...
 
 
 class Mirei(Idol):

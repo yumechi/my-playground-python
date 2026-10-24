@@ -21,4 +21,3 @@
 FastAPIのデータタイプサポートは下記が詳しい。
 
 https://pydantic-docs.helpmanual.io/usage/types/
-

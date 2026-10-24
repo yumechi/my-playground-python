@@ -6,13 +6,11 @@ Err = Union[tuple[T, None], tuple[None, Exception]]
 
 
 @overload
-def my_div(num1: int, num2: int) -> Err[float]:
-    ...
+def my_div(num1: int, num2: int) -> Err[float]: ...
 
 
 @overload
-def my_div() -> Err[float]:
-    ...
+def my_div() -> Err[float]: ...
 
 
 def my_div(num1=1, num2=1):

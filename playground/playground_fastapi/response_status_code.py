@@ -2,6 +2,7 @@ from fastapi import FastAPI, status
 
 app = FastAPI()
 
+
 # httpsのコードは各種見るとこんなかんじ
 # cpython: https://github.com/python/cpython/blob/61ac612e78e4f2625977406fb6f366e0a644673a/Lib/http/__init__.py
 # starlette: https://github.com/encode/starlette/blob/e4307065ea6dbe708fba9643d14fe7adfff06d46/starlette/status.py

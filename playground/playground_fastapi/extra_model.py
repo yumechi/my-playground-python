@@ -1,5 +1,3 @@
-from typing import Optional, Union
-
 from fastapi import FastAPI
 from pydantic import BaseModel, EmailStr
 
@@ -33,7 +31,7 @@ class UserInDB(BaseModel):
 class UserBase(BaseModel):
     username: str
     email: EmailStr
-    full_name: Optional[str] = None
+    full_name: str | None = None
 
 
 class UserIn(UserBase):
@@ -73,7 +71,7 @@ async def create_user(user_in: UserIn):
     return user_saved
 
 
-# 下記は複数の型を返すケースで、typingのUnionを活用する
+# 下記は複数の型を返すケースで、Union（`X | Y`）を活用する
 class BaseItem(BaseModel):
     description: str
     type: str
@@ -98,7 +96,7 @@ items = {
 }
 
 
-@app.get("/items/{item_id}", response_model=Union[PlaneItem, CarItem])
+@app.get("/items/{item_id}", response_model=PlaneItem | CarItem)
 async def read_item(item_id: str):
     """
     返すモデルが一意でないパターン

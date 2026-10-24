@@ -1,7 +1,7 @@
 from fastapi import FastAPI, File, UploadFile
-from fastapi.responses import HTMLResponse
 
 app = FastAPI()
+
 
 # ファイルを Form に流し込む
 # curl でやるには
@@ -29,4 +29,3 @@ async def create_files(files: list[bytes] = File(...)):
 @app.post("/uploadfiles/")
 async def create_upload_files(files: list[UploadFile] = File(...)):
     return {"filenames": [file.filename for file in files]}
-

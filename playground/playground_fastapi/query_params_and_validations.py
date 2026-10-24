@@ -1,13 +1,11 @@
-from typing import Optional
-
-from fastapi import FastAPI, Query, Path
+from fastapi import FastAPI, Path, Query
 
 app = FastAPI()
 
 
 @app.get("/items/")
 async def read_items(
-    q: Optional[str] = Query(
+    q: str | None = Query(
         default=None,
         min_length=3,
         max_length=50,
@@ -65,12 +63,12 @@ async def read_items_4(q: list[str] = Query(["foo", "bar"])):
 
 @app.get("/items_5/")
 async def read_items_5(
-    q: Optional[str] = Query(
+    q: str | None = Query(
         None,
         title="クエリ文字列",
         description="これはクエリの文字列ですという説明",
         min_length=3,
-    )
+    ),
 ):
     """
     titleやdescriptionを使うと OpenAPI 側で見たときに説明が追加される。
@@ -84,7 +82,7 @@ async def read_items_5(
 
 @app.get("/items_6/")
 async def read_items_6(
-    q: Optional[str] = Query(None, alias="item-query", deprecated=True)
+    q: str | None = Query(None, alias="item-query", deprecated=True),
 ):
     """
     aliasを使うとパラメータとして受け取るkey名を変更できる。
@@ -97,7 +95,7 @@ async def read_items_6(
 
 @app.get("/items_1/{item_id}")
 async def read_items_id1(
-    q: Optional[str] = Query(None, alias="item-query"),
+    q: str | None = Query(None, alias="item-query"),
     item_id: int = Path(..., title="アイテムのID"),
 ):
     """
